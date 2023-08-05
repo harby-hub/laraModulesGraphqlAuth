@@ -1,0 +1,7 @@
+{
+    "Atom"           : true ,
+    "Authentication" : true ,
+    "Delivering"     : true ,
+    "Payeer"         : true ,
+    "Seller"         : true
+}

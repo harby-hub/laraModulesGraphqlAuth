@@ -1,0 +1,13 @@
+{
+    "name"        : "Seller" ,
+    "alias"       : "Seller" ,
+    "description" : ""         ,
+    "keywords"    : [ ]        ,
+    "priority"    : 4          ,
+    "aliases"     : { }        ,
+    "files"       : [ ]        ,
+    "requires"    : [ ]        ,
+    "providers"   : [
+        "Modules\\Seller\\Providers\\SellerServiceProvider"
+    ]
+}

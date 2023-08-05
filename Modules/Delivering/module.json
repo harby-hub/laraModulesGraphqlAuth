@@ -1,0 +1,13 @@
+{
+    "name"        : "Delivering" ,
+    "alias"       : "Delivering" ,
+    "description" : ""         ,
+    "keywords"    : [ ]        ,
+    "priority"    : 2          ,
+    "aliases"     : { }        ,
+    "files"       : [ ]        ,
+    "requires"    : [ ]        ,
+    "providers"   : [
+        "Modules\\Delivering\\Providers\\DeliveringServiceProvider"
+    ]
+}

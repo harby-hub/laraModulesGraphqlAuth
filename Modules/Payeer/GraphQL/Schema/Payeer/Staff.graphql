@@ -1,0 +1,29 @@
+type PayeerStaff {
+    id:     ID
+    name:   String
+    email:  String
+    active: String
+}
+
+type PayeerStaffResponse {
+    data:   PayeerStaff
+    status: Status
+}
+
+type PayeerStaffResults {
+    data:   PayeerStaff
+    query:  Query
+    status: Status
+}
+
+input PayeerStaffinputs @validator( class: "Staff\\Search" ) {
+    id:     [ ID     ! ]
+    email:  [ String ! ]
+    name:   [ String ! ]
+    active:   Boolean
+}
+
+extend type Query {
+    PayeerStaff(  id: ID! @eq ): PayeerStaffResponse @field( resolver: "Staff@Show" )
+    PayeerStaffs( builder: PayeerStaffinputs ): [ PayeerStaff ! ] !  @paginate( builder: "Staff@Index" defaultCount: 15 )
+}

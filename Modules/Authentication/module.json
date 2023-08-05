@@ -1,0 +1,13 @@
+{
+    "name"        : "Authentication" ,
+    "alias"       : "authentication" ,
+    "description" : ""               ,
+    "keywords"    : [ ]              ,
+    "priority"    : 1                ,
+    "aliases"     : { }              ,
+    "files"       : [ ]              ,
+    "requires"    : [ ]              ,
+    "providers"   : [
+        "Modules\\Authentication\\Providers\\AuthenticationServiceProvider"
+    ]
+}
