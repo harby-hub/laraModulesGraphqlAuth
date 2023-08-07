@@ -1,1 +1,0 @@
-<?php namespace Modules\Payeer\Tests; class TestCase extends \Modules\Atom\Tests\TestCase { }

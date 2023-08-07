@@ -5,7 +5,7 @@
     "keywords": [ "laravel" , "framework" , "modules" ],
     "license": "MIT",
     "require": {
-        "php": "*",
+        "php": "^8.1",
         "guzzlehttp/guzzle": "^7.7",
         "laravel/framework": "^10.17",
         "laravel/passport": "^11.8",
@@ -33,17 +33,21 @@
         }
     },
     "scripts": {
-        "test"           : [ "clear" , "@artisan optimize:clear" , "@database" , "@phpunit" ],
+        "test"           : [ "clear" , "@ClearCache" , "@database" , "@phpunit" ],
         "artisan"        : "@php artisan",
         "phpunit"        : "@artisan test",
         "database"       : [
             "@artisan migrate:fresh",
             "@passport"
         ],
+        "ClearCache"       : [
+            "@artisan lighthouse:clear-cache",
+            "@artisan optimize:clear"
+        ],
         "passport"        : [
-            "@artisan passport:client --password --name Laravel-Password-Grant-Client-Client --provider Client" ,
-            "@artisan passport:client --password --name Laravel-Password-Grant-Client-Staff --provider Staff" ,
-            "@artisan passport:client --password --name Laravel-Password-Grant-Client-Delegate --provider Delegate"
+            "@artisan passport:client --password --name Laravel-Password-Grant-Administration-Staff --provider Staff"   ,
+            "@artisan passport:client --password --name Laravel-Password-Grant-Seller-Client        --provider Client"  ,
+            "@artisan passport:client --password --name Laravel-Password-Grant-Delivering-Delegate --provider Delegate"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
@@ -56,7 +60,8 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
+            "@php artisan key:generate --ansi" ,
+            "@php artisan passport:keys"
         ]
     },
     "extra": {

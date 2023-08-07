@@ -1,7 +1,7 @@
 <?php namespace Modules\Authentication\Tests\Staff;
 
 use Modules\Authentication\Tests\TestCase ;
-use Modules\Payeer\Models\Staff;
+use Modules\Administration\Models\Staff;
 
 class RegisterTest extends TestCase {
 

@@ -1,13 +1,13 @@
 {
-    "name"        : "Seller" ,
-    "alias"       : "Seller" ,
+    "name"        : "Administration" ,
+    "alias"       : "Administration" ,
     "description" : ""         ,
     "keywords"    : [ ]        ,
-    "priority"    : 4          ,
+    "priority"    : 3          ,
     "aliases"     : { }        ,
     "files"       : [ ]        ,
     "requires"    : [ ]        ,
     "providers"   : [
-        "Modules\\Seller\\Providers\\ServiceProvider"
+        "Modules\\Administration\\Providers\\ServiceProvider"
     ]
 }

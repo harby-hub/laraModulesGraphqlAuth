@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Hash;
 use Modules\Authentication\Tests\TestCase ;
-use Modules\Payeer\Models\Staff;
+use Modules\Administration\Models\Staff;
 
 class UpdateTest extends TestCase {
 

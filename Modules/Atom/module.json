@@ -8,6 +8,6 @@
     "files"       : [ ]    ,
     "requires"    : [ ]    ,
     "providers"   : [
-        "Modules\\Atom\\Providers\\AtomServiceProvider"
+        "Modules\\Atom\\Providers\\ServiceProvider"
     ]
 }

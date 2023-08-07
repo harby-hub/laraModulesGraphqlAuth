@@ -8,6 +8,6 @@
     "files"       : [ ]        ,
     "requires"    : [ ]        ,
     "providers"   : [
-        "Modules\\Delivering\\Providers\\DeliveringServiceProvider"
+        "Modules\\Delivering\\Providers\\ServiceProvider"
     ]
 }

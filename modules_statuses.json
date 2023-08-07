@@ -2,6 +2,6 @@
     "Atom"           : true ,
     "Authentication" : true ,
     "Delivering"     : true ,
-    "Payeer"         : true ,
+    "Administration"         : true ,
     "Seller"         : true
 }
