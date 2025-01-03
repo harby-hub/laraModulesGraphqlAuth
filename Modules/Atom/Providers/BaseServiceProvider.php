@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\{Config,Validator};
 Abstract class BaseServiceProvider extends \Illuminate\Support\ServiceProvider {
 
     public function getModuleName( ) : string {
-        return Str::of( Str::afterLast( static::class , 'Modules' )  ) -> match('/\w+/') -> toString( ) ;
+        return Str::of( Str::afterLast( static::class , 'Modules' ) ) -> match('/\w+/') -> toString( ) ;
         return Module::byClassName( static::class ) ;
     }
 
@@ -55,7 +55,7 @@ Abstract class BaseServiceProvider extends \Illuminate\Support\ServiceProvider {
 
 
     private function getPublishableViewPaths( array $paths = [ ] ) : array {
-        foreach ( Config::get( 'view.paths' ) as $path ) if ( is_dir( $path . '/modules/' . $this -> getModuleName( ) ) ) $paths[ ] = $path . '/modules/' . $this -> getModuleName( ) ;
+        foreach ( Config::get( 'view.paths' , [ ] ) as $path ) if ( is_dir( $path . '/modules/' . $this -> getModuleName( ) ) ) $paths[ ] = $path . '/modules/' . $this -> getModuleName( ) ;
         return $paths;
     }
 

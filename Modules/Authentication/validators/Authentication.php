@@ -7,6 +7,8 @@ class Authentication {
     public function IfEmailExists( $Email ) : bool {
         return ( bool ) collect ( Config::get( 'auth.providers' ) )
             -> pluck ( 'model' )
+            -> filter( fn( $provider ) => is_subclass_of( $provider , \Illuminate\Contracts\Auth\Authenticatable::class ) )
+            -> values( )
             -> map   ( fn( $provider ) => $provider::where( 'email' , $Email ) -> exists( ) )
             -> reduce( fn ( $carry , $item ) => $carry or $item )
         ;

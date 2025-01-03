@@ -43,10 +43,10 @@ class Authentication {
         return AuthenticationProviders::tryby( class_basename( $Authenticatable ) ) ;
     }
 
-    public function getAuthentication( bool $With = false ) : Staff|Client|Delegate|Authenticatable|Model|null {
-        if ( $Authentication = $this -> getAuthenticationByGuard( 'Staff' ) ) return $Authentication ;
+    public function getAuthentication( bool $With = false ) : Authenticatable|Model|null {
+        if ( $Authentication = $this -> getAuthenticationByGuard( 'Staff'    ) ) return $Authentication ;
         if ( $Authentication = $this -> getAuthenticationByGuard( 'Client'   ) ) return $Authentication ;
-        if ( $Authentication = $this -> getAuthenticationByGuard( 'Delegate'  ) ) return $Authentication ;
+        if ( $Authentication = $this -> getAuthenticationByGuard( 'Delegate' ) ) return $Authentication ;
         else return $With ? $this -> throwAuthenticationException( ) : null ;
     }
 
@@ -69,7 +69,7 @@ class Authentication {
             'grant_type'    => 'password'                ,
             'password'      => $password                 ,
             'username'      => $username                 ,
-            'scope'         => [ $provider -> name ]             ,
+            'scope'         => [ $provider -> name ]     ,
             'client_id'     => $PassportClient -> id     ,
             'client_secret' => $PassportClient -> secret ,
         ] , [ ] , [ ] , [ 'HTTP_ACCEPT' => 'application/json' ] ) ;

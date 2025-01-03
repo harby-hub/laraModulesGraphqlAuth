@@ -6,7 +6,7 @@ use Modules\Seller\Models\Client;
 class RegisterTest extends TestCase {
 
     public function testRegisterApi( ) {
-        $provider        = class_basename ( Client::class )   ;
+        $provider   = class_basename ( Client::class )   ;
         $ClientMake = Client :: Factory( ) -> raw    ( ) ;
         $Client     = Client :: Factory( ) -> create ( ) ;
 

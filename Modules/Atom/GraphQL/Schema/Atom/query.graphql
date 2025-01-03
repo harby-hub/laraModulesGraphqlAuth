@@ -1,3 +1,4 @@
 extend type Query {
-  atomNamespaces: atomNamespacesResponse @field( resolver: "Atom@Namespaces" )
+    atomNamespaces: atomNamespacesResponse @field( resolver: "Atom@Namespaces" )
+	atomHealth:     payloadResponse        @field( resolver: "Atom@Health"     )
 }

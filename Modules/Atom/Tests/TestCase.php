@@ -25,8 +25,8 @@ abstract class TestCase extends BaseTestCase {
         return $this ;
     }
 
-    protected function createTestResponse( $response ) {
-        return tap( TestResponse::fromBaseResponse( $response ) , function ( $response ) {
+    protected function createTestResponse( $response , $request ) {
+        return tap( TestResponse::fromBaseResponse( $response , $request ) , function ( $response ) {
             $response -> withExceptions(
                 $this -> app -> bound( LoggedExceptionCollection::class ) ? $this -> app -> make( LoggedExceptionCollection::class ) : new LoggedExceptionCollection
             ) ;

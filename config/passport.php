@@ -1,7 +1,5 @@
 <?php return [
 
-    \Laravel\Passport\Passport::ignoreMigrations( ) ,
-
     /*
     |--------------------------------------------------------------------------
     | Encryption Keys

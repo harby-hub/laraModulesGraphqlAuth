@@ -4,12 +4,12 @@ use Illuminate\Support\{Str,Arr};
 use Illuminate\Database\Eloquent\Builder as base;
 
 class Builder {
-    
+
     public function orWhereByString( ) {
         return function( array | string $attributes , string $searchTerm ) : base {
             /** @var base $this */
             return $this -> orWhere( function( $query ) use ( $attributes , $searchTerm ) {
-                foreach( Arr::wrap( $attributes ) as $attribute ) $query -> orWhere( $attribute , 'REGEXP' , $searchTerm );
+                foreach( ( array ) ( $attributes ) as $attribute ) $query -> orWhere( $attribute , 'REGEXP' , $searchTerm );
             } )  ;
         } ;
     }
@@ -18,7 +18,7 @@ class Builder {
         return function( array | string $attributes , string $searchTerm ) : base {
             /** @var base $this */
             return $this -> Where( function( $query ) use ( $attributes , $searchTerm ) {
-                foreach( Arr::wrap( $attributes ) as $attribute ) $query -> orWhere( $attribute , 'REGEXP' , $searchTerm );
+                foreach( ( array ) ( $attributes ) as $attribute ) $query -> orWhere( $attribute , 'REGEXP' , $searchTerm );
             } )  ;
         } ;
     }

@@ -12,17 +12,17 @@ Abstract class Repository {
     public array $relations = [ ] ;
     public array $counters  = [ ] ;
 
-    public function relations ( ) : array { return $this -> relations ; }
-    public function counters  ( ) : array { return $this -> counters  ; }
+    public function relations( ) : array { return $this -> relations ; }
+    public function counters( ) : array { return $this -> counters  ; }
 
-    public function filters   ( Builder $Query , Array $Array = [ ] ) : Builder {
+    public function filters( Builder $Query , Array $Array = [ ] ) : Builder {
         $this -> WhenArrayExists ( 'id'         , $Array , fn ( $items ) => $Query -> whereIn      ( 'id'         , $items ) ) ;
         $this -> WhenExistsFT    ( 'created_at' , $Array , fn ( $dates ) => $Query -> whereBetween ( 'created_at' , $dates ) ) ;
         $this -> WhenExists      ( 'active'     , $Array , fn ( $item  ) => $Query -> where        ( 'active'     , $item  ) ) ;
         return $Query ;
     }
 
-    public function Query     ( Array $Array = [ ] , bool $with = false ) : Builder {
+    public function Query( Array $Array = [ ] , bool $with = false ) : Builder {
         $Query = $this -> filters ( $this -> BaseQuery ( ) , $Array ) ;
         if ( $with ) $Query = $Query
             -> with      ( $this -> relations ( ) )
@@ -41,18 +41,18 @@ Abstract class Repository {
     Abstract public function BaseQuery ( ) : Builder ;
 
     public function WhenArrayExists( string | int $key , Array $Array = [ ] , \Closure $Closure = null , $default = null ) {
-        if ( array_key_exists( $key , $Array ) ) return value( $Closure , Arr::wrap( $Array[ $key ] ) ) ;
-        return func_num_args( ) === 4 ? value( $Closure , Arr::wrap( $default ) ) : null ;
+        if ( Arr::has( $Array , $key ) ) return value( $Closure , Arr::get( $Array , $key ) ) ;
+        return func_num_args( ) === 4 ? value( $Closure , ( array ) $default ) : null ;
     }
 
     public function WhenExists( string | int $key , Array $Array = [ ] , \Closure $Closure = null , $default = null ) {
-        if ( array_key_exists( $key , $Array ) ) return value( $Closure , $Array[ $key ] ) ;
+        if ( Arr::has( $Array , $key ) ) return value( $Closure , Arr::get( $Array , $key ) ) ;
         return func_num_args( ) === 4 ? value( $Closure , $default ) : null ;
     }
 
     public function WhenExistsFT( string $key , Array $Array = [ ] , \Closure $Closure = null , $default = null ) {
-        if ( array_key_exists( $key . '_from' , $Array ) and array_key_exists( $key . '_to' , $Array ) ) return value( $Closure , Arr::wrap( [ ( int ) $Array[ $key . '_from' ] , ( int ) $Array[ $key . '_to' ] ] ) ) ;
-        return func_num_args( ) === 4 ? value( $Closure , Arr::wrap( $default ) ) : null ;
+        if ( Arr::has( $Array , [ $key . '_from' , $key . '_to' ] ) ) return value( $Closure , ( array ) [ Arr::get( $Array , $key . '_from' ) , Arr::get( $Array , $key . '_to' ) ] ) ;
+        return func_num_args( ) === 4 ? value( $Closure , ( array ) $default ) : null ;
     }
 
     public static function Relation( string $Relation , Builder $Query , Array $Array = [ ] ) : Builder {
